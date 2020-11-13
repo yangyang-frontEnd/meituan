@@ -5,20 +5,25 @@
         <input type="text" class="search" placeholder="请输入商家或商品名称" />
       </div>
     </van-sticky>
-    <h6 v-for="(item,index) in arr" :key="index">{{item}}</h6>
+    <Category></Category>
+    <h6 v-for="(item, index) in arr" :key="index">{{ item }}</h6>
   </div>
 </template>
 
 <script>
+import Category from "./category";
 export default {
-    data() {
-        return {
-            arr: []
-        }
-    },
-    created(){
-        this.arr = [...("Sticky.".repeat(100).split('.'))]
-    }
+  data() {
+    return {
+      arr: [],
+    };
+  },
+  components: {
+    Category,
+  },
+  created() {
+    this.arr = [..."Sticky.".repeat(100).split(".")];
+  },
 };
 </script>
 
