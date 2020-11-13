@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import {getCategory} from "../../api/home"
 export default {
   data() {
     return {
@@ -18,20 +18,15 @@ export default {
     };
   },
   created() {
-    axios({
-      url: "http://admin.gxxmglzx.com/tender/test/get_type",
-    })
-      .then((res) => {
-        if (res.data.errcode === 200) {
-          console.log("获取分类数据", res.data);
-          this.cateList = res.data.data;
-        } else {
-          console.log(res.data.errmsg);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    this._getCategory()
+  },
+  methods: {
+      _getCategory() {
+          getCategory().then(res=>{
+            //   console.log('分类数据',res);
+              this.cateList = res.data
+          })
+      }
   },
 };
 </script>
